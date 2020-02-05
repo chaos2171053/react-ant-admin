@@ -24,9 +24,34 @@ export interface Config {
   logo?: string;
 }
 
+function apiUrl() {
+  const ENV = process.env.API_URL;
+  console.log(process.env);
+  let api = '';
+  switch (ENV) {
+    case 'local':
+      api = 'http://127.0.0.1:7002';
+      break;
+    case 'dev':
+      api = 'http://127.0.0.1:7002';
+    case 'test':
+      api = 'http://127.0.0.1:7002';
+      break;
+    case 'pre':
+      api = 'http://127.0.0.1:7002';
+      break;
+    case 'prod':
+      api = 'https://www.buduangeng365.cn/admin';
+      break;
+    default:
+      api = 'http://127.0.0.1:7002';
+  }
+  return api;
+}
+
 const AdminConfig: Config = {
   // react-router basename
-  BASENAME: '/react-ant-admin',
+  BASENAME: '/admin',
 
   // 请求成功状态码
   SUCCESS_CODE: 200,
@@ -35,7 +60,7 @@ const AdminConfig: Config = {
   LOGIN_EXPIRE: 400,
 
   // 统一请求地址
-  API_URL: 'https://www.landluck.com.cn/react-ant-admin-api',
+  API_URL: apiUrl(),
 
   // 本地存储token 的key
   TOKEN_KEY: 'Admin_Token_key',
@@ -56,7 +81,7 @@ const AdminConfig: Config = {
   colorWeak: false,
 
   // 项目名称
-  title: 'React Ant Admin',
+  title: 'Chaos Admin',
 
   // logo
 };

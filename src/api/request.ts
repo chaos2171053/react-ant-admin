@@ -21,9 +21,8 @@ axios.defaults.headers = {
 };
 
 // 指定请求地址
-
-axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? AdminConfig.API_URL : '';
-
+//axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? AdminConfig.API_URL : '';
+axios.defaults.baseURL = AdminConfig.API_URL;
 // 添加请求拦截器
 axios.interceptors.request.use(
   (config: AxiosRequestConfig) => {
@@ -34,7 +33,6 @@ axios.interceptors.request.use(
     if (token) {
       config.headers.token = token;
     }
-
     return config;
   },
   (error: AxiosError) => Promise.reject(error),
@@ -57,9 +55,9 @@ axios.interceptors.response.use(
         onOk() {
           store.dispatch(clearSideBarRoutes());
           store.dispatch(logout());
-          window.location.href = `${
-            window.location.origin
-          }/react-ant-admin/system/login?redirectURL=${encodeURIComponent(window.location.href)}`;
+          window.location.href = `${window.location.origin}${
+            AdminConfig.BASENAME
+          }/system/login?redirectURL=${encodeURIComponent(window.location.href)}`;
         },
         onCancel() {},
       });

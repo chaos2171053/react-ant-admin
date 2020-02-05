@@ -36,7 +36,7 @@ export interface MenuSearchParams extends PageQueryParams {
 export function apiGetMenuList(params?: MenuSearchParams) {
   return request<QueryListResponseData<Menu>>({
     method: 'GET',
-    url: '/menu',
+    url: '/admin/menu',
     params,
   });
 }
@@ -44,7 +44,7 @@ export function apiGetMenuList(params?: MenuSearchParams) {
 export function apiUpdateMenu(data: Menu) {
   return request<PlainObject>({
     method: 'PUT',
-    url: '/menu',
+    url: '/admin/menu',
     data,
   });
 }
@@ -52,7 +52,7 @@ export function apiUpdateMenu(data: Menu) {
 export function apiCreateMenu(data: Menu) {
   return request<PlainObject>({
     method: 'POST',
-    url: '/menu',
+    url: '/admin/menu',
     data,
   });
 }
@@ -60,13 +60,13 @@ export function apiCreateMenu(data: Menu) {
 export function apiGetMenuCascader() {
   return request<Menu[]>({
     method: 'GET',
-    url: '/menu/cascader',
+    url: '/admin/menu/cascader',
   });
 }
 
 export function apiRemoveMenu(id: number) {
   return request<PlainObject>({
     method: 'DELETE',
-    url: `/menu/${id}`,
+    url: `/admin/menu/${id}`,
   });
 }

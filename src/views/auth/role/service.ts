@@ -21,7 +21,7 @@ export interface RoleSearchParams extends PageQueryParams {
 export function apiGetRoleList(params?: RoleSearchParams) {
   return request<QueryListResponseData<Role>>({
     method: 'GET',
-    url: '/role',
+    url: '/admin/role',
     params,
   });
 }
@@ -29,7 +29,7 @@ export function apiGetRoleList(params?: RoleSearchParams) {
 export function apiUpdateRole(data: Role) {
   return request<PlainObject>({
     method: 'PUT',
-    url: '/role',
+    url: '/admin/role',
     data,
   });
 }
@@ -37,7 +37,7 @@ export function apiUpdateRole(data: Role) {
 export function apiCreateRole(data: Role) {
   return request<PlainObject>({
     method: 'POST',
-    url: '/role',
+    url: '/admin/role',
     data,
   });
 }
@@ -45,7 +45,7 @@ export function apiCreateRole(data: Role) {
 export function apiRemoveRole(id: number) {
   return request<PlainObject>({
     method: 'DELETE',
-    url: `/role/${id}`,
+    url: `/admin/role/${id}`,
   });
 }
 
