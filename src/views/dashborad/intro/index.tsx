@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
-import PageWrap from '../../components/PageWrap';
+import PageWrap from '../../../components/PageWrap/PageWrap';
 import { requestMd } from '../../../api/requestMd';
 import introMd from './intro.md';
 

@@ -37,7 +37,7 @@ export interface UserSearchParams extends PageQueryParams {
 export function apiGetUserList(params?: UserSearchParams) {
   return request<QueryListResponseData<User>>({
     method: 'GET',
-    url: '/admin/user',
+    url: '/user',
     params,
   });
 }
@@ -45,7 +45,7 @@ export function apiGetUserList(params?: UserSearchParams) {
 export function apiUpdateUser(data: User) {
   return request<PlainObject>({
     method: 'PUT',
-    url: '/admin/user',
+    url: '/user',
     data,
   });
 }
@@ -53,7 +53,7 @@ export function apiUpdateUser(data: User) {
 export function apiCreateUser(data: User) {
   return request<PlainObject>({
     method: 'POST',
-    url: '/admin/user',
+    url: '/user',
     data,
   });
 }
@@ -61,13 +61,13 @@ export function apiCreateUser(data: User) {
 export function apiRemoveUser(id: number) {
   return request<PlainObject>({
     method: 'DELETE',
-    url: `/admin/user/${id}`,
+    url: `/user/${id}`,
   });
 }
 
 export function apiGetMenuList() {
   return request<{ list: Menu[]; ids: number[] }>({
     method: 'GET',
-    url: '/admin/user/menu',
+    url: '/user/menu',
   });
 }

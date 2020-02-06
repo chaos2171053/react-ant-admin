@@ -23,7 +23,6 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
-  "homepage": "https://www.landluck.com.cn/react-ant-admin",
   "scripts": {
     "start": "cross-env API_URL=local node scripts/start.js",
     "build": "cross-env API_URL=prod node scripts/build.js",

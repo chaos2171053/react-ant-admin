@@ -1,10 +1,13 @@
 import React, { useMemo, useCallback, useEffect, useState, memo } from 'react';
 import { Table, Button, Modal, message, Avatar, Tag } from 'antd';
 import { PaginationProps } from 'antd/lib/pagination';
-import SearchForm, { SearchFormItem, SearchFormAction } from '../../components/SearchForm';
-import BaseTable from '../../components/BaseTable';
+import SearchForm, {
+  SearchFormItem,
+  SearchFormAction,
+} from '../../../components/SearchForm/SearchForm';
+import BaseTable from '../../../components/BaseTable/BaseTable';
 import { User, UserSearchParams, apiGetUserList, apiRemoveUser } from './service';
-import PageWrap from '../../components/PageWrap';
+import PageWrap from '../../../components/PageWrap/PageWrap';
 import { PageResponseData } from '../../../typings';
 import AddOrEdit from './AddOrEdit';
 

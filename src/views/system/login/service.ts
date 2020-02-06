@@ -11,7 +11,7 @@ export interface UserLoginData {
 export function apiUserLogin(data: UserLoginData) {
   return request<UserState>({
     method: 'POST',
-    url: '/admin/user/login',
+    url: '/user/login',
     data,
   });
 }
@@ -24,7 +24,7 @@ interface UserLoginByMobileData {
 export function apiUserLoginByMobile(data: UserLoginByMobileData) {
   return request<UserState>({
     method: 'POST',
-    url: '/admin/user/login-mobile',
+    url: '/user/login-mobile',
     data,
   });
 }
@@ -36,7 +36,7 @@ interface MobileLoginiData {
 export function apiGetVerifyCode(data: MobileLoginiData) {
   return request<PlainObject>({
     method: 'POST',
-    url: '/admin/sms',
+    url: '/sms',
     data,
   });
 }

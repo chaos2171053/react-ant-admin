@@ -94,6 +94,24 @@ const routes: IRoute[] = [
           },
         ],
       },
+      {
+        path: '/content',
+        meta: {
+          title: '内容管理',
+          icon: 'read',
+        },
+        redirect: '/article/list',
+        children: [
+          {
+            path: '/article/list',
+            component: React.lazy(() => import('../views/content/article')),
+            meta: {
+              title: '文章管理',
+              icon: 'file-markdown',
+            },
+          },
+        ],
+      },
 
       // 以下菜单为系统权限管理
       {

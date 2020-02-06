@@ -4,12 +4,12 @@ import { PaginationProps } from 'antd/lib/pagination';
 import SearchForm, {
   SearchFormItem,
   SearchFormAction,
-} from '../../../components/SearchForm/SearchForm';
-import BaseTable from '../../../components/BaseTable/BaseTable';
+} from '../../components/SearchForm/SearchForm';
+import BaseTable from '../../components/BaseTable/BaseTable';
 import { Menu, MenuSearchParams, apiGetMenuList, apiRemoveMenu } from './service';
-import { PageResponseData } from '../../../typings';
+import { PageResponseData } from '../../typings';
 import AddOrEditMenu from './AddOrEditMenu';
-import PageWrap from '../../../components/PageWrap/PageWrap';
+import PageWrap from '../../components/PageWrap/PageWrap';
 
 const MenuLevel = memo(({ level }: { level: number }) => (
   <React.Fragment>

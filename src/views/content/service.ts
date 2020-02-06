@@ -1,5 +1,5 @@
-import { request } from '../../../api/request';
-import { QueryListResponseData, PageQueryParams } from '../../../typings';
+import { request } from '../../api/request';
+import { QueryListResponseData, PageQueryParams } from '../../typings';
 
 interface PlainObject {}
 
@@ -27,10 +27,8 @@ export interface Menu {
 
 export interface MenuSearchParams extends PageQueryParams {
   name?: string;
-  id?: number;
-  url?: string;
   level?: number;
-  parentId?: number;
+  type_id?: number;
 }
 
 export function apiGetMenuList(params?: MenuSearchParams) {

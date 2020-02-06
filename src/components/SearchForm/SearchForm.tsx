@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Form, Button, Input } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import { ButtonType } from 'antd/es/button/button';
-import './index.less';
+// import './index.less';
 
 export interface SearchFormAction {
   name: string;
