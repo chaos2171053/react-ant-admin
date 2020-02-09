@@ -5,7 +5,12 @@ import SearchForm, {
   SearchFormAction,
 } from '../../../components/SearchForm/SearchForm';
 import { PageQueryParams, PageResponseData } from '../../../typings';
-import { ArticleTypeSearchParams, apiGeList, ArticleType, apiRemoveArticleType } from './service';
+import {
+  ArticleTypeSearchParams,
+  apiGeArticleTypeList,
+  ArticleTypeProps,
+  apiRemoveArticleType,
+} from './service';
 import AddMoadl from './add_modal';
 import BaseTable from '../../../components/BaseTable/BaseTable';
 import { PaginationProps } from 'antd/lib/pagination';
@@ -16,10 +21,10 @@ export default function ArticleTypePage() {
   const [editVisible, setEditVisible] = useState<boolean>(false);
   const [page, setPage] = useState<PageQueryParams>({ page: 1, size: 10 });
   const [articleTypeData, setArticleTypeData] = useState<{
-    list: ArticleType[];
+    list: ArticleTypeProps[];
     page: PageResponseData;
   }>({ list: [], page: {} });
-  const [currentArticleType, setCurrentArticleType] = useState<ArticleType | null>(null);
+  const [currentArticleType, setCurrentArticleType] = useState<ArticleTypeProps | null>(null);
 
   const formList = useMemo<SearchFormItem[]>(
     () => [
@@ -36,7 +41,7 @@ export default function ArticleTypePage() {
       if (type === 'remove') {
         Modal.confirm({
           title: '系统提示',
-          content: '此操作将永久删除该菜单, 是否继续?',
+          content: '此操作将永久删除该类别, 是否继续?',
           onOk() {
             apiRemoveArticleType(articleTypeData.list[index].id!).then(() => {
               message.success('删除成功！');
@@ -91,7 +96,7 @@ export default function ArticleTypePage() {
   const initPageList = async (params?: ArticleTypeSearchParams) => {
     setLoading(true);
     try {
-      const { data } = await apiGeList({
+      const { data } = await apiGeArticleTypeList({
         ...page,
         ...params,
       });
@@ -143,20 +148,24 @@ export default function ArticleTypePage() {
             onConfirm={onOkEditModal}
           ></AddMoadl>
         )}
-        <BaseTable<ArticleType> data={articleTypeData} onChange={onTableChange} loading={loading}>
-          <Table.Column<ArticleType> title="id" dataIndex="id" align="center"></Table.Column>
-          <Table.Column<ArticleType>
+        <BaseTable<ArticleTypeProps>
+          data={articleTypeData}
+          onChange={onTableChange}
+          loading={loading}
+        >
+          <Table.Column<ArticleTypeProps> title="id" dataIndex="id" align="center"></Table.Column>
+          <Table.Column<ArticleTypeProps>
             title="类别名称"
             dataIndex="name"
             align="center"
           ></Table.Column>
-          <Table.Column<ArticleType>
+          <Table.Column<ArticleTypeProps>
             title="类别icon"
             dataIndex="icon"
             align="center"
             render={text => <Icon style={{ fontSize: '16px' }} type={text}></Icon>}
           ></Table.Column>
-          <Table.Column<ArticleType>
+          <Table.Column<ArticleTypeProps>
             title="操作"
             align="center"
             render={(text, record, index) => (

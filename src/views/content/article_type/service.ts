@@ -3,7 +3,7 @@ import { QueryListResponseData, PageQueryParams } from '../../../typings';
 
 interface PlainObject {}
 
-export interface ArticleType {
+export interface ArticleTypeProps {
   id?: number;
 
   name: string;
@@ -15,15 +15,15 @@ export interface ArticleTypeSearchParams extends PageQueryParams {
   name?: string;
 }
 
-export function apiGeList(params?: ArticleTypeSearchParams) {
-  return request<QueryListResponseData<ArticleType>>({
+export function apiGeArticleTypeList(params?: ArticleTypeSearchParams) {
+  return request<QueryListResponseData<ArticleTypeProps>>({
     method: 'GET',
     url: '/article/type/list',
     params,
   });
 }
 
-export function apiUpdateArticleType(data: ArticleType) {
+export function apiUpdateArticleType(data: ArticleTypeProps) {
   return request<PlainObject>({
     method: 'PUT',
     url: `/article/type/${data.id}`,
@@ -31,7 +31,7 @@ export function apiUpdateArticleType(data: ArticleType) {
   });
 }
 
-export function apiCreateArticleType(data: ArticleType) {
+export function apiCreateArticleType(data: ArticleTypeProps) {
   return request<PlainObject>({
     method: 'POST',
     url: '/article/type',

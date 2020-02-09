@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
-import { ArticleType, apiCreateArticleType, apiUpdateArticleType } from './service';
+import { ArticleTypeProps, apiCreateArticleType, apiUpdateArticleType } from './service';
 import Form, { FormComponentProps } from 'antd/lib/form';
 import { Modal, Input, message } from 'antd';
 
 export interface AddMoadlProps extends FormComponentProps {
   visible: boolean;
-  articleType: ArticleType | null;
+  articleType: ArticleTypeProps | null;
   onClose: () => void;
   onConfirm: () => void;
 }
@@ -22,7 +22,7 @@ function AddMoadl(props: AddMoadlProps) {
   const onOk = useCallback(() => {
     props.form.validateFields((err, values: FromProps) => {
       if (!err) {
-        const type: ArticleType = {
+        const type: ArticleTypeProps = {
           ...values,
         };
         if (type.id) {
