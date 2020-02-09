@@ -7,17 +7,7 @@ interface TransitionMainProps {
 }
 
 function TransitionMain({ children }: TransitionMainProps) {
-  return (
-    <Route
-      render={({ location }) => (
-        <TransitionGroup className="layout__route">
-          <CSSTransition key={location.pathname} classNames="layout__route" timeout={300}>
-            <Switch location={location}>{children}</Switch>
-          </CSSTransition>
-        </TransitionGroup>
-      )}
-    ></Route>
-  );
+  return <Route render={({ location }) => <Switch location={location}>{children}</Switch>}></Route>;
 }
 
 export default TransitionMain;

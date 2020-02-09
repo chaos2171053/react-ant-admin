@@ -100,10 +100,10 @@ const routes: IRoute[] = [
           title: '内容管理',
           icon: 'read',
         },
-        redirect: '/article/list',
+        redirect: '/content/article/list',
         children: [
           {
-            path: '/article/list',
+            path: '/content/article/list',
             component: React.lazy(() => import('../views/content/article')),
             meta: {
               title: '文章管理',
@@ -111,7 +111,7 @@ const routes: IRoute[] = [
             },
           },
           {
-            path: '/article/add',
+            path: '/content/article/add',
             auth: false,
             component: React.lazy(() => import('../views/content/article/add')),
             meta: {
@@ -120,7 +120,7 @@ const routes: IRoute[] = [
             },
           },
           {
-            path: '/article/type/list',
+            path: '/content/article/type',
             component: React.lazy(() => import('../views/content/article_type')),
             meta: {
               title: '文章类别',
