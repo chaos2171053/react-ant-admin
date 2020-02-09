@@ -110,6 +110,14 @@ const routes: IRoute[] = [
               icon: 'file-markdown',
             },
           },
+          {
+            path: '/article/type/list',
+            component: React.lazy(() => import('../views/content/article_type')),
+            meta: {
+              title: '文章类别',
+              icon: 'file-markdown',
+            },
+          },
         ],
       },
 

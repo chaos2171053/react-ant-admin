@@ -26,7 +26,6 @@ export interface Config {
 
 function apiUrl() {
   const ENV = process.env.API_URL;
-  console.log(process.env);
   let api = '';
   switch (ENV) {
     case 'local':
