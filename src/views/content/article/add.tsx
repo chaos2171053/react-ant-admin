@@ -3,7 +3,7 @@ import PageWrap from '../../../components/PageWrap/PageWrap';
 import { withRouter, RouteComponentProps, useParams } from 'react-router-dom';
 import { ArticleProps } from './service';
 import { apiGeArticleTypeList, ArticleTypeProps } from '../article_type/service';
-import CRUDForm from '../../../components/add_form';
+import AddForm from '../../../components/add_form';
 
 interface IAddPpageProps extends RouteComponentProps {}
 interface RouteProps {
@@ -72,7 +72,7 @@ function AddPage(props: IAddPpageProps) {
   return (
     <>
       <PageWrap>
-        <CRUDForm formList={formList} onCancel={onCancel} onSubmit={onSubmit} />
+        <AddForm formList={formList} onCancel={onCancel} onSubmit={onSubmit} />
         {/* <Formik <ArticleProps> initialValues={articleData} onSubmit={onSubmit}>
           <Form >
             {
