@@ -8,7 +8,7 @@ export interface ArticleProps {
 
   title: string;
 
-  type_id: number;
+  type_id: number | null;
 
   content: string;
 

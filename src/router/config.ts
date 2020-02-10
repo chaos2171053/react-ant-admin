@@ -120,6 +120,15 @@ const routes: IRoute[] = [
             },
           },
           {
+            path: '/content/article/edit/:id',
+            auth: false,
+            component: React.lazy(() => import('../views/content/article/add')),
+            meta: {
+              title: '编辑文章',
+              icon: 'file-markdown',
+            },
+          },
+          {
             path: '/content/article/type',
             component: React.lazy(() => import('../views/content/article_type')),
             meta: {

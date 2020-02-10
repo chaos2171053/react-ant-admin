@@ -27,7 +27,11 @@ function ArticlePage(props: Props) {
   const formList = useMemo<SearchFormItem[]>(() => {
     let options: React.ReactNode[] = [];
     articleTypeList.forEach((type: ArticleTypeProps) => {
-      options.push(<Option key={type.id}>{type.name}</Option>);
+      options.push(
+        <Option key={type.id} value={type.id}>
+          {type.name}
+        </Option>,
+      );
     });
     return [
       {
@@ -132,7 +136,7 @@ function ArticlePage(props: Props) {
     [page],
   );
   const onAddArticle = useCallback(() => {
-    props.history.push('/article/add');
+    props.history.push('/content/article/add');
   }, []);
 
   const onTableChange = useCallback(({ current, pageSize }: PaginationProps) => {
