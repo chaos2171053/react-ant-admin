@@ -34,9 +34,10 @@ function AddPage(props: IAddPpageProps) {
       setArticleTypeList(res.data.list);
     });
   };
-  const onSubmit = () => {
+  const onSubmit = (res: any) => {
     return new Promise(async (resolve, reject) => {
       setTimeout(() => {
+        console.log(res);
         resolve();
       }, 3000);
 
@@ -45,34 +46,77 @@ function AddPage(props: IAddPpageProps) {
       // }
     });
   };
-  const onCancel = () => {
-    return new Promise(async (resolve, reject) => {
-      resolve();
-      // } else {
-      //   resolve()
-      // }
-    });
-  };
   const formList = useMemo(() => {
+    const typeOptions = articleTypeList.map(type => ({
+      label: type.name,
+      value: type.id,
+    }));
     return [
       {
-        name: '文章标题',
-        placeholder: '请输入文章标题',
-        label: '文章标题',
+        name: 'title',
+        placeholder: '请输入标题',
+        label: '标题',
         rules: [
           {
             required: true,
-            message: '请输入文章标题',
+            message: '请输入标题',
             max: 30,
           },
         ],
       },
+      {
+        name: 'type_id',
+        placeholder: '请选择类别',
+        label: '类别',
+        type: 'select',
+        options: typeOptions,
+        rules: [
+          {
+            required: true,
+            message: '请选择类别',
+          },
+        ],
+      },
+      // TODO: faet:定时发表文章 https://github.com/zhuangchuming/NodeJsTimerTask
+      // {
+      //   name: 'public_at',
+      //   placeholder: '请选择发布时间',
+      //   label: '发布时间',
+      //   type: 'select',
+      //   options: typeOptions,
+      //   rules: [
+      //     {
+      //       required: true,
+      //       message: '请选择类别',
+      //     },
+      //   ],
+      // }
+      {
+        name: 'content',
+        label: '内容',
+        type: 'editor',
+        placeholder: '请输入内容',
+        validateTrigger: 'onBlur',
+        upload: true,
+        rules: [
+          {
+            required: true,
+            validator: (_: any, value: { isEmpty: () => any }, callback: (arg0?: any) => any) => {
+              if (value.isEmpty()) {
+                callback('请输入内容');
+              } else {
+                callback();
+              }
+            },
+          },
+        ],
+      },
     ];
-  }, [articleData]);
+  }, [articleData, articleTypeList]);
   return (
     <>
       <PageWrap>
-        <AddForm formList={formList} onCancel={onCancel} onSubmit={onSubmit} />
+        <AddForm formList={formList} onSubmit={onSubmit} />
         {/* <Formik <ArticleProps> initialValues={articleData} onSubmit={onSubmit}>
           <Form >
             {

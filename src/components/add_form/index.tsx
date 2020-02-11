@@ -17,7 +17,7 @@ import {
 import { FormComponentProps } from 'antd/lib/form';
 import TextArea from 'antd/lib/input/TextArea';
 import Password from 'antd/lib/input/Password';
-
+import Editor from '../editor/index';
 export interface AddFormItemProps {
   name: string;
   label: string;
@@ -25,6 +25,14 @@ export interface AddFormItemProps {
   placeholder?: string;
   rules?: object[];
   render?: React.ReactNode;
+
+  // Select
+  options?: object[];
+
+  // edior
+  controls?: string[];
+  extendControls?: object[];
+  upload?: boolean;
 }
 
 export interface AddFormProps extends FormComponentProps {
@@ -143,6 +151,11 @@ function AddForm(props: AddFormProps) {
     if (type === 'time') return <TimePicker {...commonProps} {...props} />;
 
     if (type === 'transfer') return <Transfer {...commonProps} {...props} />;
+
+    if (type === 'editor') {
+      const { upload = false, ...otherProps } = props;
+      return <Editor upload={upload} {...otherProps} />;
+    }
 
     throw new Error(`no appropriate component type: ${type}`);
   }
