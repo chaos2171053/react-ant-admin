@@ -1,13 +1,13 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Form, Modal, Input, message, Switch, Select, Upload, Icon } from 'antd';
+import { Form, Modal, Input, message, Switch, Select, Icon } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
-import { UploadChangeParam } from 'antd/lib/upload';
-import { UploadFile } from 'antd/lib/upload/interface';
+
 import { User, apiUpdateUser, apiCreateUser } from './service';
 import { Role, apiGetRoleList } from '../role/service';
 import { IStoreState } from '../../../store/types';
 
+import Upload from '../../../components/upload';
 export interface AddOrEditUserProps extends FormComponentProps {
   visible: boolean;
   user: User | null;
@@ -87,10 +87,8 @@ function AddOrEditUser(props: AddOrEditUserProps) {
     });
   }, [avatar]);
 
-  const onChange = useCallback(({ file }: UploadChangeParam<UploadFile<any>>) => {
-    if (file.response && file.response.code === 200) {
-      setAvatar(file.response.data[0].url);
-    }
+  const onChange = useCallback((url: string) => {
+    setAvatar(url);
   }, []);
 
   const reset = props.form.getFieldValue('reset');
@@ -172,15 +170,7 @@ function AddOrEditUser(props: AddOrEditUserProps) {
           })(<Switch />)}
         </Form.Item>
         <Form.Item label="用户头像">
-          <Upload
-            name="file"
-            accept="image/*"
-            listType="picture-card"
-            headers={{ token: props.token }}
-            showUploadList={false}
-            action="/upload/image"
-            onChange={onChange}
-          >
+          <Upload uploadType="image" onUploadChange={onChange}>
             {avatar ? (
               <img src={avatar} alt="avatar" style={{ width: '100%' }} />
             ) : (
