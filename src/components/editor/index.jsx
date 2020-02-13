@@ -1,39 +1,48 @@
 import 'braft-editor/dist/index.css';
 import React from 'react';
 import BraftEditor from 'braft-editor';
-import { Upload, Icon } from 'antd';
+import { ContentUtils } from 'braft-utils';
+import { Icon, Button } from 'antd';
+import Upload from '../upload';
 
 export default class Editor extends React.Component {
-  uploadHandler = param => {
-    if (!param.file) {
-      return false;
-    }
-  };
+  onUploadChange(url) {
+    const contentVal = this.editorInstance.getValue();
+    this.editorInstance.setValue(ContentUtils.insertText(contentVal, `![alt 图片描述](${url})`));
+    this.setState({ imgUlr: url });
+  }
+
   render() {
-    const { upload = false, ...otherProps } = this.props;
+    const { upload = false, token, ...otherProps } = this.props;
+
     const extendControls = upload
       ? [
           {
             key: 'antd-uploader',
             type: 'component',
             component: (
-              <Upload accept="image/*" showUploadList={false} customRequest={this.uploadHandler}>
-                {/* 这里的按钮最好加上type="button"，以避免在表单容器中触发表单提交，用Antd的Button组件则无需如此 */}
-                <button
-                  type="button"
-                  className="control-item button upload-button"
-                  data-title="插入图片"
-                >
-                  <Icon type="picture" theme="filled" />
-                </button>
-              </Upload>
+              <>
+                <Upload type="image" onUploadChange={this.onUploadChange.bind(this)}>
+                  <Button
+                    type="button"
+                    className="control-item button upload-button"
+                    data-title="插入图片"
+                  >
+                    <Icon type="picture" theme="filled" />
+                  </Button>
+                </Upload>
+              </>
             ),
           },
         ]
       : [];
     return (
       <>
-        <BraftEditor extendControls={extendControls} {...otherProps} />
+        <BraftEditor
+          extendControls={extendControls}
+          {...otherProps}
+          ref={instance => (this.editorInstance = instance)}
+        />
       </>
     );
   }

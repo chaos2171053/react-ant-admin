@@ -18,6 +18,7 @@ import { FormComponentProps } from 'antd/lib/form';
 import TextArea from 'antd/lib/input/TextArea';
 import Password from 'antd/lib/input/Password';
 import Editor from '../editor/index';
+// TODO 把AddFormItemProps变成联合类型
 export interface AddFormItemProps {
   name: string;
   label: string;
@@ -32,7 +33,7 @@ export interface AddFormItemProps {
   // edior
   controls?: string[];
   extendControls?: object[];
-  upload?: boolean;
+  upload?: boolean; // 是否需要上传功能
 }
 
 export interface AddFormProps extends FormComponentProps {
@@ -153,8 +154,7 @@ function AddForm(props: AddFormProps) {
     if (type === 'transfer') return <Transfer {...commonProps} {...props} />;
 
     if (type === 'editor') {
-      const { upload = false, ...otherProps } = props;
-      return <Editor upload={upload} {...otherProps} />;
+      return <Editor {...props} />;
     }
 
     throw new Error(`no appropriate component type: ${type}`);
