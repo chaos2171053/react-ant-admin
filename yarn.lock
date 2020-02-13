@@ -335,15 +335,7 @@
     "@babel/helper-remap-async-to-generator" "^7.8.3"
     "@babel/plugin-syntax-async-generators" "^7.8.0"
 
-"@babel/plugin-proposal-class-properties@7.8.3":
-  version "7.8.3"
-  resolved "https://registry.npm.taobao.org/@babel/plugin-proposal-class-properties/download/@babel/plugin-proposal-class-properties-7.8.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fplugin-proposal-class-properties%2Fdownload%2F%40babel%2Fplugin-proposal-class-properties-7.8.3.tgz#5e06654af5cd04b608915aada9b2a6788004464e"
-  integrity sha1-XgZlSvXNBLYIkVqtqbKmeIAERk4=
-  dependencies:
-    "@babel/helper-create-class-features-plugin" "^7.8.3"
-    "@babel/helper-plugin-utils" "^7.8.3"
-
-"@babel/plugin-proposal-class-properties@^7.8.3":
+"@babel/plugin-proposal-class-properties@7.8.3", "@babel/plugin-proposal-class-properties@^7.8.3":
   version "7.8.3"
   resolved "https://registry.npm.taobao.org/@babel/plugin-proposal-class-properties/download/@babel/plugin-proposal-class-properties-7.8.3.tgz?cache=0&sync_timestamp=1578951896490&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fplugin-proposal-class-properties%2Fdownload%2F%40babel%2Fplugin-proposal-class-properties-7.8.3.tgz#5e06654af5cd04b608915aada9b2a6788004464e"
   integrity sha1-XgZlSvXNBLYIkVqtqbKmeIAERk4=
@@ -2862,7 +2854,7 @@ braces@^3.0.1:
   dependencies:
     fill-range "^7.0.1"
 
-braft-convert@^2.3.0:
+braft-convert@^2.1.10, braft-convert@^2.3.0:
   version "2.3.0"
   resolved "https://registry.npm.taobao.org/braft-convert/download/braft-convert-2.3.0.tgz#27d5905136c334903d083b7a2352a72045627888"
   integrity sha1-J9WQUTbDNJA9CDt6I1KnIEVieIg=
@@ -2884,6 +2876,15 @@ braft-editor@*, braft-editor@^2.3.8:
     draft-js-multidecorators "^1.0.0"
     draftjs-utils "^0.9.4"
     immutable "~3.7.4"
+
+braft-extensions@^0.0.20:
+  version "0.0.20"
+  resolved "https://registry.npm.taobao.org/braft-extensions/download/braft-extensions-0.0.20.tgz#04408cabb79b3d7b9574d6e5d9269661bb781cf1"
+  integrity sha1-BECMq7ebPXuVdNbl2SaWYbt4HPE=
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    braft-convert "^2.1.10"
+    braft-utils "^3.0.8"
 
 braft-finder@^0.0.19:
   version "0.0.19"
