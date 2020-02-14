@@ -66,7 +66,7 @@ function AddForm(props: AddFormProps) {
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    props.form.validateFields(async (err, values: any) => {
+    props.form.validateFieldsAndScroll(async (err, values: any) => {
       if (!err) {
         setLoading(true);
         if (!values.id) {
