@@ -17,6 +17,8 @@ export interface ArticleProps {
 
   view_count?: number;
 
+  type_name?: string;
+
   created_at?: string;
 
   publish_at: string | Moment;
