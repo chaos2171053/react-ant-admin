@@ -21,7 +21,6 @@ function ArticlePage(props: Props) {
     list: ArticleProps[];
     page: PageResponseData;
   }>({ list: [], page: {} });
-  const [currentArticle, setCurrentArticle] = useState<ArticleProps | null>(null);
   const [articleTypeList, setArticleTypeList] = useState<ArticleTypeProps[] | []>([]);
 
   const formList = useMemo<SearchFormItem[]>(() => {
@@ -35,12 +34,12 @@ function ArticlePage(props: Props) {
     });
     return [
       {
-        name: 'name',
+        name: 'title',
         placeholder: '请输入文章标题',
         label: '文章标题',
       },
       {
-        name: 'level',
+        name: 'type_id',
         label: '文章类别',
         placeholder: '请选择文章类别',
         render: (
@@ -67,7 +66,7 @@ function ArticlePage(props: Props) {
           onCancel() {},
         });
       } else {
-        setCurrentArticle(articleData.list[index]);
+        props.history.push(`/content/article/edit/${articleData.list[index].id}`);
       }
     },
     [articleData.list],
@@ -117,7 +116,7 @@ function ArticlePage(props: Props) {
   const initPageList = async (params?: ArticleSearchParams) => {
     setLoading(true);
     try {
-      const { data } = await apiGetArticleList({
+      let { data } = await apiGetArticleList({
         ...page,
         ...params,
       });
@@ -154,20 +153,20 @@ function ArticlePage(props: Props) {
         />
         <BaseTable<ArticleProps> data={articleData} onChange={onTableChange} loading={loading}>
           <Table.Column<ArticleProps> title="id" dataIndex="id" align="center"></Table.Column>
-          <Table.Column<ArticleProps> title="标题" dataIndex="name" align="center"></Table.Column>
+          <Table.Column<ArticleProps> title="标题" dataIndex="title" align="center"></Table.Column>
+          <Table.Column<ArticleProps>
+            title="文章类别"
+            dataIndex="type_name"
+            align="center"
+          ></Table.Column>
           <Table.Column<ArticleProps>
             title="浏览次数"
             dataIndex="view_count"
             align="center"
           ></Table.Column>
           <Table.Column<ArticleProps>
-            title="创建时间"
-            dataIndex="created_at"
-            align="center"
-          ></Table.Column>
-          <Table.Column<ArticleProps>
-            title="更新时间"
-            dataIndex="updated_at"
+            title="发布时间"
+            dataIndex="publish_at"
             align="center"
           ></Table.Column>
           <Table.Column<ArticleSearchParams>

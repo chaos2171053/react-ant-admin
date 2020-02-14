@@ -72,6 +72,12 @@ export default class Editor extends React.PureComponent {
       </html>
     `;
   }
+  componentWillReceiveProps(nextProps) {
+    const { initialValue } = nextProps;
+    if (!this.props.initialValue && initialValue) {
+      this.editorInstance.setValue(BraftEditor.createEditorState(initialValue));
+    }
+  }
   preview = () => {
     if (window.previewWindow) {
       window.previewWindow.close();

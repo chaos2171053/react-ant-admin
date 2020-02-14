@@ -1,5 +1,6 @@
 import { request } from '../../../api/request';
 import { QueryListResponseData, PageQueryParams } from '../../../typings';
+import { Moment } from 'moment';
 
 interface PlainObject {}
 
@@ -18,7 +19,7 @@ export interface ArticleProps {
 
   created_at?: string;
 
-  updated_at?: string;
+  publish_at: string | Moment;
 
   deleted_at?: string;
 }
@@ -36,10 +37,17 @@ export function apiGetArticleList(params?: ArticleSearchParams) {
   });
 }
 
+export function apiGetArticle(id: number) {
+  return request<ArticleProps>({
+    method: 'GET',
+    url: `/article/${id}`,
+  });
+}
+
 export function apiUpdateArticle(data: ArticleProps) {
   return request<PlainObject>({
     method: 'PUT',
-    url: '/article',
+    url: `/article/${data.id}`,
     data,
   });
 }
@@ -55,6 +63,6 @@ export function apiCreateArticle(data: ArticleProps) {
 export function apiRemoveArticle(id: number) {
   return request<PlainObject>({
     method: 'DELETE',
-    url: `/article/${id}`,
+    url: `/ article / ${id}`,
   });
 }

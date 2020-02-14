@@ -22,10 +22,12 @@ import Editor from '../editor/index';
 export interface AddFormItemProps {
   name: string;
   label: string;
+  initialValue?: any;
   type?: string;
   placeholder?: string;
   rules?: object[];
   render?: React.ReactNode;
+  style?: object;
 
   // Select
   options?: object[];
@@ -67,6 +69,9 @@ function AddForm(props: AddFormProps) {
     props.form.validateFields(async (err, values: any) => {
       if (!err) {
         setLoading(true);
+        if (!values.id) {
+          delete values.id;
+        }
         await props.onSubmit(values);
         setLoading(false);
       }
@@ -74,8 +79,7 @@ function AddForm(props: AddFormProps) {
   };
 
   function getElement(item: any) {
-    const { type = 'input', render, ...props } = item;
-
+    const { type = 'input', name, label, render, initialValue, ...props } = item;
     const commonProps = {
       size: 'default',
     };
@@ -154,7 +158,7 @@ function AddForm(props: AddFormProps) {
     if (type === 'transfer') return <Transfer {...commonProps} {...props} />;
 
     if (type === 'editor') {
-      return <Editor {...props} />;
+      return <Editor initialValue={initialValue} {...props} />;
     }
 
     throw new Error(`no appropriate component type: ${type}`);
@@ -164,11 +168,18 @@ function AddForm(props: AddFormProps) {
     <Form onSubmit={submit}>
       {props.formList.map((item: AddFormItemProps) => {
         return (
-          <Form.Item label={item.label} key={item.name}>
-            {getFieldDecorator(item.name, {
-              rules: item.rules,
-            })(getElement(item))}
-          </Form.Item>
+          <div
+            style={{ display: item.type === 'hidden' ? 'none' : 'block', ...item.style }}
+            className="form-element-flex-root"
+            key={`form-element-${item.name}`}
+          >
+            <Form.Item label={item.label} key={item.name}>
+              {getFieldDecorator(item.name, {
+                rules: item.rules,
+                initialValue: item.initialValue,
+              })(getElement(item))}
+            </Form.Item>
+          </div>
         );
       })}
       <Form.Item>
