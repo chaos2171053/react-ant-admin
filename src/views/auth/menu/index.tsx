@@ -98,7 +98,7 @@ function MenuManage() {
 
   const [editVisible, setEditVisible] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [page, setPage] = useState<{ page: number; size: number }>({ page: 1, size: 10 });
+  const [page, setPage] = useState<{ page: number; pageSize: number }>({ page: 1, pageSize: 10 });
 
   const [menuData, setMenuData] = useState<{ list: Menu[]; page: PageResponseData }>({
     list: [],
@@ -170,7 +170,7 @@ function MenuManage() {
   }, []);
 
   const onTableChange = useCallback(({ current, pageSize }: PaginationProps) => {
-    setPage({ page: current as number, size: pageSize as number });
+    setPage({ page: current as number, pageSize: pageSize as number });
   }, []);
 
   return (

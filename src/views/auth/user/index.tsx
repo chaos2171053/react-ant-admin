@@ -70,7 +70,7 @@ function UserManage() {
   const [editVisible, setEditVisible] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [page, setPage] = useState<{ page: number; size: number }>({ page: 1, size: 10 });
+  const [page, setPage] = useState<{ page: number; pageSize: number }>({ page: 1, pageSize: 10 });
 
   const [userData, setUserData] = useState<{ list: User[]; page: PageResponseData }>({
     list: [],
@@ -147,7 +147,7 @@ function UserManage() {
   }, []);
 
   const onTableChange = useCallback(({ current, pageSize }: PaginationProps) => {
-    setPage({ page: current as number, size: pageSize as number });
+    setPage({ page: current as number, pageSize: pageSize as number });
   }, []);
 
   return (

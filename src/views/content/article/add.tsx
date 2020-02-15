@@ -38,7 +38,7 @@ function AddPage(props: IAddPpageProps) {
     });
   };
   const getArticleTypeList = () => {
-    apiGeArticleTypeList({ page: 1, size: 20 }).then(res => {
+    apiGeArticleTypeList({ page: 1, pageSize: 20 }).then(res => {
       setArticleTypeList(res.data.list);
     });
   };

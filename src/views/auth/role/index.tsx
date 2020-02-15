@@ -75,7 +75,7 @@ function RoleManage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [editMenuVisible, setEditMenuVisible] = useState<boolean>(false);
 
-  const [page, setPage] = useState<{ page: number; size: number }>({ page: 1, size: 10 });
+  const [page, setPage] = useState<{ page: number; pageSize: number }>({ page: 1, pageSize: 10 });
 
   const [roleData, setRoleData] = useState<{ list: Role[]; page: PageResponseData }>({
     list: [],
@@ -159,7 +159,7 @@ function RoleManage() {
   }, []);
 
   const onTableChange = useCallback(({ current, pageSize }: PaginationProps) => {
-    setPage({ page: current as number, size: pageSize as number });
+    setPage({ page: current as number, pageSize: pageSize as number });
   }, []);
 
   return (

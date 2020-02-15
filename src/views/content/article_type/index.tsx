@@ -19,7 +19,7 @@ import { Table, Icon, Button, Modal, message } from 'antd';
 export default function ArticleTypePage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [editVisible, setEditVisible] = useState<boolean>(false);
-  const [page, setPage] = useState<PageQueryParams>({ page: 1, size: 10 });
+  const [page, setPage] = useState<PageQueryParams>({ page: 1, pageSize: 10 });
   const [articleTypeData, setArticleTypeData] = useState<{
     list: ArticleTypeProps[];
     page: PageResponseData;
@@ -128,7 +128,7 @@ export default function ArticleTypePage() {
   }, [setEditVisible]);
 
   const onTableChange = useCallback(({ current, pageSize }: PaginationProps) => {
-    setPage({ page: current as number, size: pageSize as number });
+    setPage({ page: current as number, pageSize: pageSize as number });
   }, []);
 
   return (

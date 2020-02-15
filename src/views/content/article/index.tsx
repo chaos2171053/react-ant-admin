@@ -16,7 +16,7 @@ const { Option } = Select;
 interface Props extends RouteComponentProps {}
 function ArticlePage(props: Props) {
   const [loading, setLoading] = useState<boolean>(false);
-  const [page, setPage] = useState<PageQueryParams>({ page: 1, size: 10 });
+  const [page, setPage] = useState<PageQueryParams>({ page: 1, pageSize: 10 });
   const [articleData, setArticleData] = useState<{
     list: ArticleProps[];
     page: PageResponseData;
@@ -109,7 +109,7 @@ function ArticlePage(props: Props) {
     [],
   );
   const initArticleTypeList = async () => {
-    apiGeArticleTypeList({ page: 1, size: 20 }).then(res => {
+    apiGeArticleTypeList({ page: 1, pageSize: 20 }).then(res => {
       setArticleTypeList(res.data.list);
     });
   };
@@ -139,7 +139,7 @@ function ArticlePage(props: Props) {
   }, []);
 
   const onTableChange = useCallback(({ current, pageSize }: PaginationProps) => {
-    setPage({ page: current as number, size: pageSize as number });
+    setPage({ page: current as number, pageSize: pageSize as number });
   }, []);
 
   return (
@@ -156,7 +156,7 @@ function ArticlePage(props: Props) {
           <Table.Column<ArticleProps> title="标题" dataIndex="title" align="center"></Table.Column>
           <Table.Column<ArticleProps>
             title="文章类别"
-            dataIndex="type_name"
+            dataIndex="type.name"
             align="center"
           ></Table.Column>
           <Table.Column<ArticleProps>

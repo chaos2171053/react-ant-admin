@@ -11,7 +11,7 @@ interface ResponseData<T> {
 
   data: T;
 
-  msg: string;
+  message: string;
 }
 
 // 指定 axios 请求类型
@@ -50,7 +50,7 @@ axios.interceptors.response.use(
     if (response.data.code === AdminConfig.LOGIN_EXPIRE) {
       Modal.confirm({
         title: '系统提示',
-        content: response.data.msg,
+        content: response.data.message,
         okText: '重新登录',
         onOk() {
           store.dispatch(clearSideBarRoutes());
@@ -62,7 +62,7 @@ axios.interceptors.response.use(
         onCancel() {},
       });
 
-      return Promise.reject(new Error(response.data.msg));
+      return Promise.reject(new Error(response.data.message));
     }
 
     // 请求成功
@@ -71,9 +71,9 @@ axios.interceptors.response.use(
     }
 
     // 请求成功，状态不为成功时
-    message.error(response.data.msg);
+    message.error(response.data.message);
 
-    return Promise.reject(new Error(response.data.msg));
+    return Promise.reject(new Error(response.data.message));
   },
   (error: AxiosError) => {
     message.error(error.message);

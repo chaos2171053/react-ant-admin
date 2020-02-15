@@ -42,7 +42,7 @@ function AddOrEditUser(props: AddOrEditUserProps) {
 
   const initRoleList = async () => {
     try {
-      const { data } = await apiGetRoleList({ page: 1, size: 999 });
+      const { data } = await apiGetRoleList({ page: 1, pageSize: 999 });
 
       setRoleList(data.list);
     } catch (error) {

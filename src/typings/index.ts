@@ -4,14 +4,14 @@ export type Partial<T> = {
 
 export interface PageQueryParams {
   page: number;
-  size: number;
+  pageSize: number;
 }
 
 export interface PageResponseData {
   dataTotal?: number;
   pageTotal?: number;
   page?: number;
-  size?: number;
+  pageSize?: number;
 }
 
 export interface QueryListResponseData<T> {
