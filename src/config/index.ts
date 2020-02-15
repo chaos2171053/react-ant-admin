@@ -40,7 +40,7 @@ function apiUrl() {
       api = 'http://127.0.0.1:7002';
       break;
     case 'prod':
-      api = 'https://www.buduangeng365.cn/admin';
+      api = 'http://www.buduangeng365.cn';
       break;
     default:
       api = 'http://127.0.0.1:7002';
