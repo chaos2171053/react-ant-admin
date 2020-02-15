@@ -45,7 +45,7 @@ const config: { [key in keyof LoginItemType]: LoginItemConfig } = {
       placeholder: '6-18位账号',
       type: 'text',
     },
-    rules: [{ required: true, message: '请输入合法账号', min: 6, max: 18 }],
+    rules: [{ required: true, message: '请输入合法账号', min: 5, max: 18 }],
   },
   Mobile: {
     name: 'mobile',
