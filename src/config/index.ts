@@ -29,21 +29,21 @@ function apiUrl() {
   let api = '';
   switch (ENV) {
     case 'local':
-      api = 'http://127.0.0.1:7002';
+      api = 'http://127.0.0.1:7002/api';
       break;
     case 'dev':
-      api = 'http://127.0.0.1:7002';
+      api = 'http://127.0.0.1:7002/api';
     case 'test':
-      api = 'http://127.0.0.1:7002';
+      api = 'http://127.0.0.1:7002/api';
       break;
     case 'pre':
-      api = 'http://127.0.0.1:7002';
+      api = 'http://127.0.0.1:7002/api';
       break;
     case 'prod':
-      api = 'http://www.buduangeng365.cn';
+      api = 'http://www.buduangeng365.cn/api';
       break;
     default:
-      api = 'http://127.0.0.1:7002';
+      api = 'http://127.0.0.1:7002/api';
   }
   return api;
 }
