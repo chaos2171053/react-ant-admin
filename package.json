@@ -2,7 +2,7 @@
   "name": "react-ant-admin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
+  "homepage": "http://www.buduangeng365.cn/admin",
   "dependencies": {
     "@ant-design/aliyun-theme": "0.0.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
